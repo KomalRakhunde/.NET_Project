@@ -1,0 +1,56 @@
+@model TourManagement_MVC.Models.Booking
+@{
+    ViewData["Title"] = "Book Tour - " + (Model.TourName ?? "Package");
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow-sm p-4 p-md-5 rounded-4 bg-white">
+                <div class="text-center mb-4">
+                    <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-2">Reservation Form</span>
+                    <h2 class="fw-bold">Book Your Tour</h2>
+                    <p class="text-muted">Enter traveler details to confirm your reservation.</p>
+                </div>
+
+                <form asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="TourName" class="form-label fw-semibold"></label>
+                        <input asp-for="TourName" class="form-control" placeholder="Tour package name..." required />
+                        <span asp-validation-for="TourName" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Place" class="form-label fw-semibold"></label>
+                        <input asp-for="Place" class="form-control" placeholder="Destination place..." required />
+                        <span asp-validation-for="Place" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="FirstName" class="form-label fw-semibold">Traveler Full Name</label>
+                        <input asp-for="FirstName" class="form-control" placeholder="e.g. Rahul Sharma" required />
+                        <span asp-validation-for="FirstName" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Email" class="form-label fw-semibold">Contact Email Address</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="name@example.com" required />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg fw-bold py-3 shadow-sm">
+                            <i class="bi bi-check-circle me-1"></i> Confirm & Book Tour
+                        </button>
+                        <a asp-controller="Tour" asp-action="Index" class="btn btn-outline-secondary">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+@model TourManagement_MVC.Models.Tour
+@{
+    ViewData["Title"] = Model.TourName;
+}
+
+<div class="container py-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Tour" asp-action="Index">Tours</a></li>
+            <li class="breadcrumb-item active">@Model.TourName</li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm overflow-hidden rounded-3 mb-4">
+                <img src="~/images/tours/@Model.Pic" class="img-fluid w-100" style="max-height: 420px; object-fit: cover;" alt="@Model.TourName" onerror="this.src='/images/tours/TravelImage.jpg'">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                        <span class="badge bg-primary px-3 py-2 fs-6 rounded-pill">
+                            <i class="bi bi-clock me-1"></i> @Model.Days Days / @(Model.Days - 1) Nights
+                        </span>
+                        <span class="badge bg-light text-dark border px-3 py-2 fs-6 rounded-pill">
+                            <i class="bi bi-geo-alt-fill text-danger me-1"></i> @Model.Place
+                        </span>
+                    </div>
+
+                    <h2 class="fw-bold mb-3">@Model.TourName</h2>
+                    
+                    <h5 class="fw-bold mt-4 mb-2"><i class="bi bi-info-circle-fill text-primary me-2"></i>Tour Overview</h5>
+                    <p class="text-muted leading-relaxed" style="line-height: 1.8;">@Model.TourInfo</p>
+
+                    <h5 class="fw-bold mt-4 mb-2"><i class="bi bi-pin-map-fill text-success me-2"></i>Places & Itinerary Highlights</h5>
+                    <p class="text-muted">@Model.Locations</p>
+
+                    <h5 class="fw-bold mt-4 mb-3"><i class="bi bi-shield-check text-warning me-2"></i>Package Inclusions</h5>
+                    <div class="row g-2">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center gap-2 text-muted">
+                                <i class="bi bi-check2-circle text-success fs-5"></i>
+                                <span>Hotel Accommodations</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center gap-2 text-muted">
+                                <i class="bi bi-check2-circle text-success fs-5"></i>
+                                <span>Daily Breakfast & Dinner</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center gap-2 text-muted">
+                                <i class="bi bi-check2-circle text-success fs-5"></i>
+                                <span>Sightseeing Transportation</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center gap-2 text-muted">
+                                <i class="bi bi-check2-circle text-success fs-5"></i>
+                                <span>Professional Tour Guide</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm p-4 rounded-3 sticky-top" style="top: 90px;">
+                <h4 class="fw-bold mb-3">Booking Summary</h4>
+                <div class="bg-light p-3 rounded-3 mb-3">
+                    <span class="text-muted small d-block">Total Package Price</span>
+                    <span class="display-6 fw-bold text-primary">₹@Model.Price.ToString("N0")</span>
+                    <span class="text-muted small d-block">per person (taxes included)</span>
+                </div>
+
+                <div class="mb-3">
+                    <small class="text-muted d-block mb-1"><i class="bi bi-calendar3 me-1"></i> Flexible Dates Available</small>
+                    <small class="text-muted d-block mb-1"><i class="bi bi-arrow-repeat me-1"></i> Instant Confirmation</small>
+                    <small class="text-muted d-block"><i class="bi bi-patch-check me-1"></i> Best Price Guarantee</small>
+                </div>
+
+                <a asp-controller="Booking" asp-action="Create" asp-route-tourId="@Model.TourId" class="btn btn-primary btn-lg w-100 fw-bold py-3 shadow-sm mb-2">
+                    <i class="bi bi-calendar-plus me-1"></i> Book This Tour Now
+                </a>
+                <a asp-action="Index" class="btn btn-outline-secondary w-100">
+                    <i class="bi bi-arrow-left me-1"></i> Back to All Tours
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

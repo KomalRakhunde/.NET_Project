@@ -1,0 +1,271 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var userEmail = HttpContextAccessor.HttpContext?.Session.GetString("UserEmail");
+    var userName = HttpContextAccessor.HttpContext?.Session.GetString("UserName");
+    var isAdmin = HttpContextAccessor.HttpContext?.Session.GetString("IsAdmin") == "True";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TourEase | Tour Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #0ea5e9;
+            --dark-color: #0f172a;
+            --light-bg: #f8fafc;
+            --card-border: #e2e8f0;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--light-bg);
+            color: #334155;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--card-border);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: clamp(1.05rem, 3vw, 1.35rem);
+            color: var(--primary-color) !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #475569 !important;
+            padding: 8px 14px !important;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            min-height: 44px;   /* iOS touch target */
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+            background-color: #eff6ff;
+        }
+
+        /* Mobile nav spacing */
+        @@media (max-width: 991.98px) {
+            .navbar-collapse .navbar-nav { gap: 2px; padding: 8px 0; }
+            .navbar-collapse .ms-auto { flex-direction: row; flex-wrap: wrap; gap: 8px; padding: 8px 0; }
+            .navbar-collapse .btn { min-height: 40px; }
+        }
+
+        /* ── Main ── */
+        .main-content { flex: 1; }
+
+        /* ── Tour cards ── */
+        .tour-card {
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ffffff;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+        }
+
+        .tour-card-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            background: #ffffff;
+            border-top: 1px solid var(--card-border);
+            padding: 24px 16px;
+            margin-top: 48px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* ── Global responsive helpers ── */
+        img { max-width: 100%; height: auto; }
+
+        @@media (max-width: 575.98px) {
+            .display-4 { font-size: clamp(1.6rem, 7vw, 2.6rem) !important; }
+            .display-5 { font-size: clamp(1.4rem, 6vw, 2rem) !important; }
+            .lead { font-size: 1rem !important; }
+            .container { padding-left: 16px; padding-right: 16px; }
+            .py-5 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+        }
+
+        @@media (max-width: 767.98px) {
+            .tour-card-img { height: 180px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <span class="brand-badge"><i class="bi bi-compass"></i> MVC</span>
+                    TourEase
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door me-1"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Tour" asp-action="Index"><i class="bi bi-geo-alt me-1"></i> Explore Tours</a>
+                        </li>
+                        @if (!string.IsNullOrEmpty(userEmail))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Booking" asp-action="MyBookings"><i class="bi bi-journal-bookmark me-1"></i> My Bookings</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="About"><i class="bi bi-people me-1"></i> About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact"><i class="bi bi-envelope me-1"></i> Contact</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto align-items-center gap-2">
+                        @if (isAdmin)
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-warning btn-sm fw-semibold" asp-controller="Admin" asp-action="Dashboard">
+                                    <i class="bi bi-speedometer2 me-1"></i> Admin Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-danger btn-sm" asp-controller="Admin" asp-action="Logout">
+                                    <i class="bi bi-box-arrow-right"></i> Admin Logout
+                                </a>
+                            </li>
+                        }
+                        else if (!string.IsNullOrEmpty(userEmail))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fw-semibold text-primary" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle me-1"></i> @userName
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile"><i class="bi bi-person me-2"></i> My Profile</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Booking" asp-action="MyBookings"><i class="bi bi-ticket-perforated me-2"></i> My Bookings</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-sm px-3" asp-controller="Account" asp-action="Login">
+                                    <i class="bi bi-box-arrow-in-right me-1"></i> Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary btn-sm px-3" asp-controller="Account" asp-action="Register">
+                                    <i class="bi bi-person-plus me-1"></i> Register
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-secondary btn-sm px-2" asp-controller="Admin" asp-action="Login" title="Admin Portal">
+                                    <i class="bi bi-shield-lock"></i>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="container mt-3">
+                <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i> @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="container mt-3">
+                <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i> @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </div>
+        }
+
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center text-center text-md-start g-2">
+                <div class="col-md-6">
+                    <p class="mb-1 fw-semibold text-dark">TourEase &mdash; Tour Management System</p>
+                    <p class="mb-0 text-muted small">Built with C#, ASP.NET Core MVC (.NET 10).</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a asp-controller="Home" asp-action="Index" class="text-muted small text-decoration-none">Home</a>
+                        <a asp-controller="Tour" asp-action="Index" class="text-muted small text-decoration-none">Tours</a>
+                        <a asp-controller="Home" asp-action="About" class="text-muted small text-decoration-none">About Us</a>
+                        <a asp-controller="Home" asp-action="Contact" class="text-muted small text-decoration-none">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

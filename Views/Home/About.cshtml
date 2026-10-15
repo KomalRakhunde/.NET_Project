@@ -1,0 +1,171 @@
+@{
+    ViewData["Title"] = "About Us - TourEase";
+}
+
+<!-- Hero Section -->
+<div class="bg-dark text-white py-5 position-relative overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-3">
+                    <i class="bi bi-compass me-1"></i> Our Mission & Story
+                </span>
+                <h1 class="display-4 fw-extrabold mb-3 text-white">We Make Travel Easy, Memorable & Meaningful</h1>
+                <p class="lead" style="color: #cbd5e1; max-width: 680px;">
+                    TourEase is your trusted holiday partner. We curate handpicked journeys across India's most breathtaking landscapes, historic wonders, and coastal paradises.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-4 justify-content-start">
+                    <a asp-controller="Tour" asp-action="Index" class="btn btn-primary px-4 py-2 fw-semibold">
+                        <i class="bi bi-geo-alt me-1"></i> Explore Our Packages
+                    </a>
+                    <a asp-controller="Home" asp-action="Contact" class="btn btn-outline-light px-4 py-2 fw-semibold">
+                        <i class="bi bi-chat-dots me-1"></i> Talk to a Travel Expert
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 d-none d-lg-block text-center">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="transform: rotate(2deg);">
+                    <img src="~/images/tours/kashmir.jpg" class="img-fluid" alt="Kashmir Paradise" style="height: 280px; object-fit: cover;" onerror="this.src='/images/tours/TravelImage.jpg'" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <!-- Story & Vision -->
+    <div class="row align-items-center mb-5 pb-4 border-bottom">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <span class="text-primary fw-bold text-uppercase small letter-spacing-1">Our Journey</span>
+            <h2 class="fw-bold mt-2 mb-3">Born Out of a Passion for Adventure</h2>
+            <p class="text-muted">
+                At TourEase, we believe travel shouldn't be stressful or complicated. Finding reliable itineraries, honest pricing, and verified accommodations can be daunting. We created TourEase to simplify your entire travel journey—from inspiration to booking and on-ground exploration.
+            </p>
+            <p class="text-muted">
+                Whether it's watching the sun set over the Baga beach in Goa, cruising the serene backwaters of Kerala, or riding a Shikara through Srinagar's Dal Lake, our packages are thoughtfully crafted to deliver authentic local memories with maximum comfort.
+            </p>
+            <div class="row g-3 pt-2">
+                <div class="col-sm-6">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill text-success fs-4 me-2"></i>
+                        <span class="fw-semibold text-dark">Verified Local Guides</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill text-success fs-4 me-2"></i>
+                        <span class="fw-semibold text-dark">No Hidden Charges</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill text-success fs-4 me-2"></i>
+                        <span class="fw-semibold text-dark">Instant Confirmation</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill text-success fs-4 me-2"></i>
+                        <span class="fw-semibold text-dark">24/7 Traveler Helpdesk</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row g-3">
+                <div class="col-6">
+                    <img src="~/images/tours/goa.jpg" class="img-fluid rounded-4 shadow-sm w-100" style="height: clamp(140px, 20vw, 220px); object-fit: cover;" alt="Goa Beach" onerror="this.src='/images/tours/TravelImage.jpg'" />
+                </div>
+                <div class="col-6">
+                    <img src="~/images/tours/kerala.jpeg" class="img-fluid rounded-4 shadow-sm w-100 mt-3 mt-sm-4" style="height: clamp(140px, 20vw, 220px); object-fit: cover;" alt="Kerala Backwaters" onerror="this.src='/images/tours/TravelImage.jpg'" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="text-center mb-5">
+        <span class="text-primary fw-bold text-uppercase small letter-spacing-1">Why Choose Us</span>
+        <h2 class="fw-bold mt-1">The TourEase Difference</h2>
+        <p class="text-muted mx-auto" style="max-width: 600px;">
+            Every detail of your trip is coordinated by experienced travel curators who prioritize your safety, comfort, and satisfaction.
+        </p>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-sm-6 col-lg-3">
+            <div class="card border-0 shadow-sm p-4 rounded-4 h-100 bg-white text-center">
+                <div class="bg-primary-subtle text-primary p-3 rounded-circle d-inline-block mx-auto mb-3" style="width: 64px; height: 64px;">
+                    <i class="bi bi-shield-check fs-3"></i>
+                </div>
+                <h5 class="fw-bold mb-2">100% Secure & Safe</h5>
+                <p class="text-muted small mb-0">Safety-vetted stays, certified drivers, and trusted local destination partners on every trip.</p>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card border-0 shadow-sm p-4 rounded-4 h-100 bg-white text-center">
+                <div class="bg-success-subtle text-success p-3 rounded-circle d-inline-block mx-auto mb-3" style="width: 64px; height: 64px;">
+                    <i class="bi bi-tag fs-3"></i>
+                </div>
+                <h5 class="fw-bold mb-2">Best Price Promise</h5>
+                <p class="text-muted small mb-0">Direct partnership with local operators gives you competitive rates with zero booking surcharges.</p>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card border-0 shadow-sm p-4 rounded-4 h-100 bg-white text-center">
+                <div class="bg-info-subtle text-info p-3 rounded-circle d-inline-block mx-auto mb-3" style="width: 64px; height: 64px;">
+                    <i class="bi bi-calendar2-heart fs-3"></i>
+                </div>
+                <h5 class="fw-bold mb-2">Curated Itineraries</h5>
+                <p class="text-muted small mb-0">Balanced schedules combining sightseeing highlights with relaxing leisure time and cultural gems.</p>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card border-0 shadow-sm p-4 rounded-4 h-100 bg-white text-center">
+                <div class="bg-warning-subtle text-warning p-3 rounded-circle d-inline-block mx-auto mb-3" style="width: 64px; height: 64px;">
+                    <i class="bi bi-headset fs-3"></i>
+                </div>
+                <h5 class="fw-bold mb-2">24/7 Dedicated Support</h5>
+                <p class="text-muted small mb-0">Have questions before or during your vacation? Our support team is just a phone call away.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Metrics Counter -->
+    <div class="card border-0 shadow-sm rounded-4 bg-light p-4 p-md-5 mb-5">
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3">
+                <h2 class="display-5 fw-extrabold text-primary mb-1">@ViewBag.TotalTours+</h2>
+                <span class="text-muted fw-semibold">Signature Packages</span>
+            </div>
+            <div class="col-6 col-md-3">
+                <h2 class="display-5 fw-extrabold text-success mb-1">@ViewBag.TotalUsers+</h2>
+                <span class="text-muted fw-semibold">Registered Travelers</span>
+            </div>
+            <div class="col-6 col-md-3">
+                <h2 class="display-5 fw-extrabold text-info mb-1">@ViewBag.TotalBookings+</h2>
+                <span class="text-muted fw-semibold">Completed Bookings</span>
+            </div>
+            <div class="col-6 col-md-3">
+                <h2 class="display-5 fw-extrabold text-warning mb-1">4.9 ★</h2>
+                <span class="text-muted fw-semibold">Average Rating</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Banner -->
+    <div class="card border-0 shadow-sm rounded-4 text-white p-4 p-md-5 text-center" style="background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);">
+        <h2 class="fw-bold mb-3 text-white">Ready for Your Next Unforgettable Journey?</h2>
+        <p class="lead mb-4 mx-auto" style="max-width: 650px; opacity: 0.95;">
+            Browse our curated destinations and reserve your spot in just a few clicks.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a asp-controller="Tour" asp-action="Index" class="btn btn-light text-primary fw-bold px-4 py-2">
+                Browse All Tours <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            <a asp-controller="Home" asp-action="Contact" class="btn btn-outline-light fw-semibold px-4 py-2">
+                Contact Support
+            </a>
+        </div>
+    </div>
+</div>

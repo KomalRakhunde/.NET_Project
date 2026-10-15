@@ -1,0 +1,250 @@
+@model TourManagement_MVC.Models.ViewModels.ContactViewModel
+@{
+    ViewData["Title"] = "Contact Us & Help Center - TourEase";
+}
+
+<!-- Header Banner -->
+<div class="bg-dark text-white py-5 position-relative overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);">
+    <div class="container py-4 text-center">
+        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-3">
+            <i class="bi bi-headset me-1"></i> Customer Support & Assistance
+        </span>
+        <h1 class="display-4 fw-extrabold mb-3 text-white">We're Here to Help Your Journey</h1>
+        <p class="lead mx-auto" style="color: #cbd5e1; max-width: 650px;">
+            Have questions about a holiday package, need a customized family itinerary, or want assistance with an existing booking? Reach out to us anytime!
+        </p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <!-- Success Alert -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show p-3 rounded-3 shadow-sm mb-4" role="alert">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill fs-4 me-2"></i>
+                <div>
+                    <strong>Message Sent Successfully!</strong><br />
+                    @TempData["SuccessMessage"]
+                </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row g-4 mb-5">
+        <!-- Contact Form Column -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-sm p-4 p-md-5 rounded-4 bg-white h-100">
+                <div class="mb-4">
+                    <span class="brand-badge mb-2 d-inline-block"><i class="bi bi-chat-left-dots"></i> Send a Message</span>
+                    <h3 class="fw-bold">Tell Us How We Can Help</h3>
+                    <p class="text-muted small">Fill out the form below and one of our travel advisors will respond within 2-4 hours.</p>
+                </div>
+
+                <form asp-action="Contact" method="post">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label asp-for="FullName" class="form-label fw-semibold small text-dark"></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-person text-muted"></i></span>
+                                <input asp-for="FullName" class="form-control border-start-0" placeholder="e.g. Rahul Sharma" required />
+                            </div>
+                            <span asp-validation-for="FullName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Email" class="form-label fw-semibold small text-dark"></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-muted"></i></span>
+                                <input asp-for="Email" type="email" class="form-control border-start-0" placeholder="name@example.com" required />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Phone" class="form-label fw-semibold small text-dark"></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-telephone text-muted"></i></span>
+                                <input asp-for="Phone" class="form-control border-start-0" placeholder="+91 98765 43210" />
+                            </div>
+                            <span asp-validation-for="Phone" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Subject" class="form-label fw-semibold small text-dark"></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-tag text-muted"></i></span>
+                                <select asp-for="Subject" class="form-select border-start-0">
+                                    <option value="Tour Inquiry">Tour Inquiry & Package Details</option>
+                                    <option value="Booking Assistance">Booking Assistance / Modification</option>
+                                    <option value="Custom Group Trip">Custom Family / Corporate Trip</option>
+                                    <option value="Payment & Billing">Payment & Invoice Support</option>
+                                    <option value="General Feedback">Feedback or Suggestion</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="Subject" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <label asp-for="Message" class="form-label fw-semibold small text-dark"></label>
+                            <textarea asp-for="Message" rows="5" class="form-control" placeholder="Share your travel dates, preferred destination, number of guests, or specific questions..."></textarea>
+                            <span asp-validation-for="Message" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-3 shadow-sm">
+                                <i class="bi bi-send-fill me-2"></i> Submit Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact Information Column -->
+        <div class="col-lg-5">
+            <div class="d-flex flex-column gap-3 h-100">
+                <div class="card border-0 shadow-sm p-4 rounded-4 bg-white">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary-subtle text-primary p-3 rounded-circle me-3">
+                            <i class="bi bi-telephone-inbound fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Call Our Travel Helpdesk</h6>
+                            <span class="text-muted small">Available 24 hours / 7 days</span>
+                        </div>
+                    </div>
+                    <p class="mb-1 fw-bold text-dark fs-5">+91 98765 43210</p>
+                    <p class="text-muted small mb-0">Toll-Free Support: 1800-123-TOUR (8687)</p>
+                </div>
+
+                <div class="card border-0 shadow-sm p-4 rounded-4 bg-white">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-success-subtle text-success p-3 rounded-circle me-3">
+                            <i class="bi bi-envelope-check fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Email Support</h6>
+                            <span class="text-muted small">Average response in 2 hours</span>
+                        </div>
+                    </div>
+                    <p class="mb-1 fw-bold text-dark fs-5">support@tourease.com</p>
+                    <p class="text-muted small mb-0">For corporate bookings: business@tourease.com</p>
+                </div>
+
+                <div class="card border-0 shadow-sm p-4 rounded-4 bg-white">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-info-subtle text-info p-3 rounded-circle me-3">
+                            <i class="bi bi-geo-alt-fill fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Corporate Office</h6>
+                            <span class="text-muted small">Walk-in consultations welcome</span>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        <strong>TourEase Holidays Pvt. Ltd.</strong><br />
+                        402 Heritage Heights, SG Highway,<br />
+                        Ahmedabad, Gujarat – 380054, India.
+                    </p>
+                </div>
+
+                <div class="card border-0 shadow-sm p-4 rounded-4 bg-primary text-white mt-auto">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-shield-lock-fill fs-1 me-3 text-white-50"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1 text-white">Already On Tour?</h6>
+                            <p class="small mb-0 text-white-50">For emergency assistance during active trips, use the 24/7 on-ground hotline provided in your confirmation voucher.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Frequently Asked Questions (FAQ) Section -->
+    <div class="card border-0 shadow-sm p-4 p-md-5 rounded-4 bg-white">
+        <div class="text-center mb-4">
+            <span class="brand-badge mb-2 d-inline-block"><i class="bi bi-question-circle"></i> Got Questions?</span>
+            <h2 class="fw-bold">Frequently Asked Questions</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">
+                Find quick answers to common questions about booking, payments, cancellations, and on-trip assistance.
+            </p>
+        </div>
+
+        <div class="accordion accordion-flush" id="faqAccordion">
+            <div class="accordion-item border rounded-3 mb-3">
+                <h2 class="accordion-header" id="faqHeading1">
+                    <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1">
+                        <i class="bi bi-ticket-perforated me-2 text-primary"></i> How do I book a tour package on TourEase?
+                    </button>
+                </h2>
+                <div id="faqCollapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Simply explore our packages in the <a asp-controller="Tour" asp-action="Index">Explore Tours</a> section, choose your destination, click <strong>"Book Now"</strong>, fill in your traveler details, and confirm. Your booking is confirmed instantly and saved under your <strong>My Bookings</strong> dashboard.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item border rounded-3 mb-3">
+                <h2 class="accordion-header" id="faqHeading2">
+                    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2">
+                        <i class="bi bi-currency-rupee me-2 text-primary"></i> What is included in the package price?
+                    </button>
+                </h2>
+                <div id="faqCollapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        All listed packages include comfortable accommodations (3-star or higher), certified local transfers and sightseeing vehicles, daily breakfast, and verified local tour guides as specified in each tour itinerary. Flights and personal shopping expenses are excluded.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item border rounded-3 mb-3">
+                <h2 class="accordion-header" id="faqHeading3">
+                    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3">
+                        <i class="bi bi-arrow-counterclockwise me-2 text-primary"></i> Can I cancel or reschedule my tour?
+                    </button>
+                </h2>
+                <div id="faqCollapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Yes! You can cancel or reschedule easily from your <strong>My Bookings</strong> portal. Cancellations made at least 7 days before the departure date receive a 100% full refund with zero cancellation penalty fees.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item border rounded-3 mb-3">
+                <h2 class="accordion-header" id="faqHeading4">
+                    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4">
+                        <i class="bi bi-people me-2 text-primary"></i> Do you organize custom trips for families or corporate teams?
+                    </button>
+                </h2>
+                <div id="faqCollapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Absolutely! Send us a message using the form above selecting <em>"Custom Family / Corporate Trip"</em>, and our dedicated group coordinator will design a tailored itinerary matching your budget, preferred dates, and activity choices.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item border rounded-3">
+                <h2 class="accordion-header" id="faqHeading5">
+                    <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5">
+                        <i class="bi bi-car-front me-2 text-primary"></i> Do you offer airport pickup and drop-offs?
+                    </button>
+                </h2>
+                <div id="faqCollapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">
+                        Yes, all our multi-day packages include private chauffeured airport or railway station transfers directly to your hotel upon arrival and back on your departure day.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
